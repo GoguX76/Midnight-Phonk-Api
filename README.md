@@ -9,4 +9,6 @@ Aquí se manejan las APIs REST y la base de datos para la aplicación web y móv
 ### 📍 Integrantes:
 
 Sebastian Alvarez
+
+
 Sebastian Godoy
