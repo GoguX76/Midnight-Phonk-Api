@@ -5,3 +5,8 @@ Este proyecto es el apartado **Backend** de **Midnight Phonk**, tanto para la p�
 
 ### 💡 ¿Qué es lo que maneja? 
 Aquí se manejan las APIs REST y la base de datos para la aplicación web y móvil.
+
+### 📍 Integrantes:
+
+Sebastian Alvarez
+Sebastian Godoy
