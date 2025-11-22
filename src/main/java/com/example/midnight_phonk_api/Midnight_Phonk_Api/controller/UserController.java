@@ -35,25 +35,11 @@ public class UserController {
         return ResponseEntity.ok(savedUser);
     }
 
-    @GetMapping(params = {"email", "password"})
-    public ResponseEntity<List<Users>> getUserByEmailAndPassword(
-            @RequestParam String email,
-            @RequestParam String password) {
-        List<Users> users = userRepository.findByEmailAndPassword(email, password);
-        return ResponseEntity.ok(users);
-    }
-
-    @GetMapping(params = "email")
-    public ResponseEntity<List<Users>> getUserByEmail(@RequestParam String email) {
-        List<Users> users = userRepository.findByEmail(email);
-        return ResponseEntity.ok(users);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Long id, @Valid @RequestBody Users userDetails) {
         return userRepository.findById(id)
                 .map(user -> {
-                    user.setNombre(userDetails.getNombre());
+                    user.setName(userDetails.getName());
                     user.setEmail(userDetails.getEmail());
                     user.setPassword(userDetails.getPassword());
                     Users updatedUser = userRepository.save(user);

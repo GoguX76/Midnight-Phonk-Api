@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,21 +20,25 @@ public class Purchases {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String userId; // email del usuario
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Products product;
 
     @Column(nullable = false)
-    private String userName;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String shippingDetails; // JSON string
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String items; // JSON string de los items del carrito
+    private Integer quantity;
 
     @Column(nullable = false)
-    private Double totalAmount;
+    private Double totalPrice;
 
     @Column(nullable = false)
-    private String purchaseDate;
+    private LocalDateTime purchaseDate;
+
+    @PrePersist
+    protected void onCreate() {
+        purchaseDate = LocalDateTime.now();
+    }
 }
