@@ -60,4 +60,18 @@ public class PurchasesController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @Autowired
+    private com.example.midnight_phonk_api.Midnight_Phonk_Api.repository.ReceiptRepository receiptRepository;
+
+    @GetMapping("/receipt/{orderCode}")
+    public ResponseEntity<byte[]> getReceiptByOrderCode(@PathVariable String orderCode) {
+        return purchasesService.getReceiptByOrderCode(orderCode)
+                .map(receipt -> ResponseEntity.ok()
+                        .header(org.springframework.http.HttpHeaders.CONTENT_DISPOSITION,
+                                "attachment; filename=\"boleta_" + orderCode + ".pdf\"")
+                        .contentType(org.springframework.http.MediaType.APPLICATION_PDF)
+                        .body(receipt.getContent()))
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

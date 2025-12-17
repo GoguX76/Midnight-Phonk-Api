@@ -10,6 +10,8 @@ public class PurchaseRequest {
     private Object shippingDetails; // Can be Map or String, we'll serialize it to String
     private List<PurchaseItem> items;
     private Double totalAmount;
+    private String receiptPdfBase64;
+    private String orderCode;
 
     @Data
     public static class PurchaseItem {

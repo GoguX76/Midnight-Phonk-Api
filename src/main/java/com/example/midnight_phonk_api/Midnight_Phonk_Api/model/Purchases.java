@@ -40,6 +40,9 @@ public class Purchases {
     @Column(nullable = false)
     private LocalDateTime purchaseDate;
 
+    @Column(name = "order_code")
+    private String orderCode;
+
     @PrePersist
     protected void onCreate() {
         purchaseDate = LocalDateTime.now();
